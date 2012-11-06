@@ -2,6 +2,7 @@ package App::ForkProve::SourceHandler;
 use strict;
 use parent qw(TAP::Parser::SourceHandler);
 
+use App::ForkProve::PipeIterator;
 use TAP::Parser::IteratorFactory;
 TAP::Parser::IteratorFactory->register_handler(__PACKAGE__);
 
@@ -18,10 +19,10 @@ sub make_iterator {
     pipe my $reader, my $writer;
     my $pid = fork;
     if ($pid) {
-        waitpid $pid, 0;
-        return TAP::Parser::Iterator::Stream->new($reader);
+        return App::ForkProve::PipeIterator->new($reader, $pid);
     } else {
         open STDOUT, ">&", $writer;
+        open STDERR, ">&", $writer;
         _run($path);
         exit;
     }
