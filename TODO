@@ -1,0 +1,4 @@
+- Gather all used modules from .t files automatically
+- Prevent loading Test::Builder with @INC hook
+- Prefork worker pool to make it parallel test with prove -j
+
