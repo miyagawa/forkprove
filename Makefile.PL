@@ -6,6 +6,7 @@ readme_from('bin/forkprove');
 
 requires 'App::Prove', 3.25;
 requires 'TAP::Harness', 3.25;
+requires 'parent', 0.221;
 
 install_script 'bin/forkprove';
 
