@@ -1,0 +1,55 @@
+#!perl
+use strict;
+use App::ForkProve;
+App::ForkProve->run(@ARGV);
+
+__END__
+
+=head1 NAME
+
+forkprove - forking prove
+
+=head1 SYNOPSIS
+
+  forkprove -MMoose -MCatalyst -MDBIx::Class -lr t
+
+=head1 DESCRIPTION
+
+forkprove is a forking version of prove that allows you to preload
+modules with C<-M> and then run each test after forking, potentially
+makes most of the tests to run faster without an overhead of loading
+the same modules again and again, while having an isolated, clean
+testing environment with a fork.
+
+=head1 CAVEATS
+
+=head2 Test::More
+
+Do not try to preload L<Test::Builder> and friends because doing so will not output clean TAP.
+
+=head2 Known patterns to fail
+
+Following kind of tests are known to fail.
+
+=over 4
+
+=item
+
+Tests that rely on the value of C<$FindBin::Bin>.
+
+=item
+
+Tests that expects C<END> blockk to run after each C<.t>
+
+=back
+
+=head1 AUTHOR
+
+Tatsuhiko Miyagawa
+
+=head1 SEE ALSO
+
+L<prove>, L<TAP::Parser>
+
+=cut
+

@@ -1,0 +1,31 @@
+NAME
+    forkprove - forking prove
+
+SYNOPSIS
+      forkprove -MMoose -MCatalyst -MDBIx::Class -lr t
+
+DESCRIPTION
+    forkprove is a forking version of prove that allows you to preload
+    modules with "-M" and then run each test after forking, potentially
+    makes most of the tests to run faster without an overhead of loading the
+    same modules again and again, while having an isolated, clean testing
+    environment with a fork.
+
+CAVEATS
+  Test::More
+    Do not try to preload Test::Builder and friends because doing so will
+    not output clean TAP.
+
+  Known patterns to fail
+    Following kind of tests are known to fail.
+
+    *   Tests that rely on the value of $FindBin::Bin.
+
+    *   Tests that expects "END" blockk to run after each ".t"
+
+AUTHOR
+    Tatsuhiko Miyagawa
+
+SEE ALSO
+    prove, TAP::Parser
+
