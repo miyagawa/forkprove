@@ -1,7 +1,6 @@
 package App::ForkProve::SourceHandler;
 use strict;
 use parent qw(TAP::Parser::SourceHandler);
-use Capture::Tiny qw(capture_stdout);
 
 use TAP::Parser::IteratorFactory;
 TAP::Parser::IteratorFactory->register_handler(__PACKAGE__);
