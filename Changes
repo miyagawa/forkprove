@@ -1,5 +1,8 @@
 Revision history for Perl extension App::ForkProve
 
+0.1.4 Tue Nov  6 15:34:06 PST 2012
+      - Probably support -j parallel testing (Thanks to doy)
+
 0.1.3 Tue Nov  6 14:50:09 PST 2012
       - Remove unused Capture::Tiny code (doy)
 
