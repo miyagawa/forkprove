@@ -1,4 +1,6 @@
 use inc::Module::Install;
+
+name 'forkprove';
 all_from 'lib/App/ForkProve.pm';
 readme_from('bin/forkprove');
 
