@@ -19,4 +19,5 @@ MANIFEST			This list of files
 META.yml
 README
 t/00_compile.t
+TODO
 xt/pod.t
