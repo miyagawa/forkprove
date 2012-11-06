@@ -2,7 +2,6 @@ package App::ForkProve::SourceHandler;
 use strict;
 use parent qw(TAP::Parser::SourceHandler);
 use Capture::Tiny qw(capture_stdout);
-use File::Temp qw(tempfile);
 
 use TAP::Parser::IteratorFactory;
 TAP::Parser::IteratorFactory->register_handler(__PACKAGE__);
@@ -17,21 +16,14 @@ sub make_iterator {
 
     my $path = $src->meta->{file}{dir} . $src->meta->{file}{basename};
 
-    # Used to use pipe to communicate TAP output, but Test::More's
-    # skip_all makes an immediate exit inside a test so that we can't
-    # write to the pipe. If there's a way to make Capture::Tiny to
-    # redirect STDOUT to a pipe that'd be simpler and we don't have to
-    # use a tempfile.
-    my($tap_fh, $tap_file) = tempfile(UNLINK => 1);
-
+    pipe my $reader, my $writer;
     my $pid = fork;
     if ($pid) {
         waitpid $pid, 0;
-
-        open my $fh, "<", $tap_file;
-        return TAP::Parser::Iterator::Stream->new($fh);
+        return TAP::Parser::Iterator::Stream->new($reader);
     } else {
-        capture_stdout { _run($path) } stdout => $tap_fh;
+        open STDOUT, ">&", $writer;
+        _run($path);
         exit;
     }
 }
