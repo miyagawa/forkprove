@@ -19,8 +19,10 @@ sub make_iterator {
     pipe my $reader, my $writer;
     my $pid = fork;
     if ($pid) {
+        close $writer;
         return App::ForkProve::PipeIterator->new($reader, $pid);
     } else {
+        close $reader;
         open STDOUT, ">&", $writer;
         open STDERR, ">&", $writer;
         _run($path);
