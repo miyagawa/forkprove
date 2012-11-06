@@ -39,9 +39,19 @@ Tests that rely on the value of C<$FindBin::Bin>.
 
 =item
 
-Tests that expects C<END> blockk to run after each C<.t>
+Tests that expects C<END> block to run after each C<.t>
 
 =back
+
+=head1 WHY
+
+L<Test::Aggregate> allows you to create a nested TAP output by running
+a whole bunch of C<.t> files from a directory.
+
+forkprove shares the basic idea, but it creates a whole new test
+environment by making a copy of the process with fork for each test,
+which means it could run your tests that rely on the singleton state
+etc. without modifying the code to run with Test::Aggregate.
 
 =head1 AUTHOR
 
