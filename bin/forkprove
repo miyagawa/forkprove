@@ -46,6 +46,8 @@ timing of initialization of FindBin, it might fail.
 
 Tests that expects C<END> block to run after each C<.t>
 
+=back
+
 =head1 WHY
 
 L<Test::Aggregate> allows you to create a nested TAP output by running
