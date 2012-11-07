@@ -13,6 +13,15 @@ DESCRIPTION
 
     It works well with parallel testing as well, combined with "-j" option.
 
+CONFIGURATION
+    You can specify an environment variable "PERL_FORKPROVE_IGNORE" to
+    contain a regular expression to ignore files to test with forkprove.
+
+      PERL_FORKPROVE_IGNORE=no-preload forkprove -lr t
+
+    This will run the tests with "/no-preload/" in its filenames and
+    directory and run with the standard perl execution via prove.
+
 CAVEATS
   Test::More
     Do not try to preload Test::Builder and friends because doing so will
@@ -50,11 +59,4 @@ AUTHOR
 
 SEE ALSO
     prove, TAP::Parser
-
-POD ERRORS
-    Hey! The above document had some coding errors, which are explained
-    below:
-
-    Around line 49:
-        You forgot a '=back' before '=head1'
 
