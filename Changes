@@ -1,5 +1,11 @@
 Revision history for Perl extension App::ForkProve
 
+0.2.0 Wed Nov  7 12:40:48 PST 2012
+      - More stablized -j option
+      - Added PERL_FORKPROVE_IGNORE environment value to specify tests to ignore and
+        run with the standard perl execution with prove
+      - Reset regular expression engine state (doy)
+
 0.1.5 Tue Nov  6 17:24:34 PST 2012
       - Handle -I, -l parameters in itself (doy)
       - Localize $? in running Test::Builder's END (doy)
