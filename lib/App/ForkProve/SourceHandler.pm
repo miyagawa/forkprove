@@ -37,22 +37,19 @@ sub _run {
     # passed as t/foo.t without a leading path
     local $0 = $t;
     local @INC = (@$inc, @INC);
-    _setup();
+
+    # if FindBin is preloaded, reset it with the new $0
+    if (defined &FindBin::init) {
+        FindBin::init()
+    }
 
     # reset the state of empty pattern matches, so that they have the same
     # behavior as running in a clean process.
     # see "The empty pattern //" in perlop.
-    # note that this can't go in _setup() because it is dynamically scoped.
+    # note that this has to be dynamically scoped and can't go to other subs
     "" =~ /^/;
 
-    eval qq{ package main; do \$t; 1 } or die $!;
-}
-
-sub _setup {
-    # $FindBin::Bin etc. has to be refreshed with the current $0
-    if (defined &FindBin::init) {
-        FindBin::init()
-    }
+    eval q{ package main; do $t; 1 } or die $!;
 }
 
 1;
