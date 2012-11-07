@@ -8,7 +8,12 @@ TAP::Parser::IteratorFactory->register_handler(__PACKAGE__);
 
 sub can_handle {
     my($class, $src) = @_;
-    return 1 if $src->meta->{file}{ext} eq '.t';
+    return 1 if $src->meta->{file}{ext} eq '.t' && !$class->ignore($src->meta->{file});
+}
+
+sub ignore {
+    my($class, $file) = @_;
+    $ENV{PERL_FORKPROVE_IGNORE} && ($file->{dir} . $file->{basename}) =~ /$ENV{PERL_FORKPROVE_IGNORE}/;
 }
 
 sub make_iterator {

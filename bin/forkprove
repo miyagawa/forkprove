@@ -23,6 +23,16 @@ testing environment with a fork.
 
 It works well with parallel testing as well, combined with C<-j> option.
 
+=head1 CONFIGURATION
+
+You can specify an environment variable C<PERL_FORKPROVE_IGNORE> to
+contain a regular expression to ignore files to test with forkprove.
+
+  PERL_FORKPROVE_IGNORE=no-preload forkprove -lr t
+
+This will run the tests with C</no-preload/> in its filenames and
+directory and run with the standard perl execution via prove.
+
 =head1 CAVEATS
 
 =head2 Test::More
@@ -36,17 +46,15 @@ Following kind of tests are known to fail.
 
 =over 4
 
-=item
+=item *
 
 Tests that rely on the value of C<$FindBin::Bin>. There's a workaround
 in forkprove to correct the value, but if your test relies on the
 timing of initialization of FindBin, it might fail.
 
-=item
+=item *
 
 Tests that expects C<END> block to run after each C<.t>
-
-=back
 
 =head1 WHY
 
