@@ -17,9 +17,26 @@ sub run {
     @ARGV = map { /^(-M)(.+)/ ? ($1,$2) : $_ } @ARGV;
 
     my @modules;
+    my $lib;
+    my $blib;
+    my @inc;
     Getopt::Long::GetOptions('M=s@', \@modules);
+    Getopt::Long::GetOptionsFromArray([@ARGV],
+        'l|lib',  \$lib,
+        'b|blib', \$blib,
+        'I=s@',   \@inc,
+    );
+
+    if ($lib) {
+        unshift @inc, 'lib';
+    }
+
+    if ($blib) {
+        unshift @inc, 'blib/lib', 'blib/arch';
+    }
 
     for (@modules) {
+        local @INC = (@inc, @INC);
         my($module, @import) = split /[=,]/;
         eval "require $module" or die $@;
         $module->import(@import);
