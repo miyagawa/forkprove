@@ -24,7 +24,6 @@ sub make_iterator {
     } else {
         close $reader;
         open STDOUT, ">&", $writer;
-        open STDERR, ">&", $writer;
         _run($path);
         exit;
     }
