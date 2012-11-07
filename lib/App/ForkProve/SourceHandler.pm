@@ -50,6 +50,7 @@ sub _setup {
 sub _teardown {
     # Tests with no_plan rely on END to call done_testing
     if (defined $Test::Builder::Test) {
+        local $?; # since we aren't in an END block, this isn't relevant
         $Test::Builder::Test->_ending;
     }
 }
