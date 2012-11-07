@@ -1,5 +1,9 @@
 Revision history for Perl extension App::ForkProve
 
+0.1.5 Tue Nov  6 17:24:34 PST 2012
+      - Handle -I, -l parameters in itself (doy)
+      - Localize $? in running Test::Builder's END (doy)
+
 0.1.4 Tue Nov  6 15:34:06 PST 2012
       - Probably support -j parallel testing (Thanks to doy)
 
