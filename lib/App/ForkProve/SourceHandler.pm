@@ -39,21 +39,12 @@ sub _run {
     local @INC = (@$inc, @INC);
     _setup();
     eval qq{ package main; do \$t; 1 } or die $!;
-    _teardown();
 }
 
 sub _setup {
     # $FindBin::Bin etc. has to be refreshed with the current $0
     if (defined &FindBin::init) {
         FindBin::init()
-    }
-}
-
-sub _teardown {
-    # Tests with no_plan rely on END to call done_testing
-    if (defined $Test::Builder::Test) {
-        local $?; # since we aren't in an END block, this isn't relevant
-        $Test::Builder::Test->_ending;
     }
 }
 
