@@ -38,6 +38,13 @@ sub _run {
     local $0 = $t;
     local @INC = (@$inc, @INC);
     _setup();
+
+    # reset the state of empty pattern matches, so that they have the same
+    # behavior as running in a clean process.
+    # see "The empty pattern //" in perlop.
+    # note that this can't go in _setup() because it is dynamically scoped.
+    "" =~ /^/;
+
     eval qq{ package main; do \$t; 1 } or die $!;
 }
 
