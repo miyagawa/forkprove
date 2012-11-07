@@ -12,6 +12,9 @@ use App::ForkProve::SourceHandler;
 sub run {
     my($class, @args) = @_;
 
+    # Probably have to copy to @ARGV so that App::Prove can mangle it
+    # in theory we don't need to, but doing so will make some tests fail
+    # even with local @ARGV = () in SourceHandler. Not sure why...
     local @ARGV = @args;
 
     @ARGV = map { /^(-M)(.+)/ ? ($1,$2) : $_ } @ARGV;
