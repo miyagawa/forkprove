@@ -58,6 +58,9 @@ Tests that relies on C<CHECK> and C<INIT> block to run correctly.
 
 =back
 
+See also L<http://search.cpan.org/~flora/Test-Aggregate-0.364/lib/Test/Aggregate.pm#CAVEATS>,
+many of which could apply to forkprove as well.
+
 =head1 WHY
 
 L<Test::Aggregate> allows you to create a nested TAP output by running
