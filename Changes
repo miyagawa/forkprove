@@ -1,5 +1,9 @@
 Revision history for Perl extension App::ForkProve
 
+0.2.3 Thu Nov  8 12:00:23 PST 2012
+      - Added a warning when preloading modules ended up requiring Test::Builder
+      - Fixed the test handler routine to use the same as prove so that .pl test can run
+
 0.2.2 Wed Nov  7 23:31:55 PST 2012
       - Correct the error handling inside .t in case they return non-true value
       - Autoflush STDOUT/STDERR so that we can see progressive test output (doy)
