@@ -2,7 +2,7 @@ package App::ForkProve;
 
 use strict;
 use 5.008_001;
-our $VERSION = '0.2.1';
+our $VERSION = '0.2.2';
 
 use App::Prove;
 use Getopt::Long ':config' => 'pass_through';

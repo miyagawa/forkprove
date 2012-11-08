@@ -1,5 +1,9 @@
 Revision history for Perl extension App::ForkProve
 
+0.2.2 Wed Nov  7 23:31:55 PST 2012
+      - Correct the error handling inside .t in case they return non-true value
+      - Autoflush STDOUT/STDERR so that we can see progressive test output (doy)
+
 0.2.1 Wed Nov  7 20:33:54 PST 2012
       - Improved error handling in .t (jswartz)
       - Relaxed the documentaion about known tests to fail
