@@ -40,16 +40,7 @@ sub run {
 
     for (@modules) {
         my($module, @import) = split /[=,]/;
-
-        my $warn = sub {
-            if ($_[1] eq 'Test/Builder.pm') {
-                require Carp;
-                Carp::cluck("Loading $module ended up requiring Test::Builder, " .
-                  "which is known to cause issues with forkprove.\n");
-            }
-            return;
-        };
-        local @INC = ($warn, @inc, @INC);
+        local @INC = (@inc, @INC);
 
         eval "require $module" or die $@;
         $module->import(@import);

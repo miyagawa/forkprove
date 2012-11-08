@@ -35,13 +35,6 @@ directory and run with the standard perl execution via prove.
 
 =head1 CAVEATS
 
-=head2 Test::More
-
-Do not try to preload L<Test::Builder> and friends because doing so
-will not output clean TAP.
-
-=head2 Known patterns to fail
-
 Following kind of tests B<might> fail when tested under
 forkprove. There are workarounds in forkprove to detect/fix some of
 them, so don't be surprised if your tests still pass :)

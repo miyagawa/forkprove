@@ -67,6 +67,13 @@ sub _run {
     # note that this has to be dynamically scoped and can't go to other subs
     "" =~ /^/;
 
+    # Test::Builder is loaded? Reset the $Test object to make it unaware
+    # that it's a forked off proecess so that subtests won't run
+    if (defined $Test::Builder::Test) {
+        undef $Test::Builder::Test;
+        $Test::Builder::Test = Test::Builder->new;
+    }
+
     # do() can't tell if a test can't be read or a .t's last statement
     # returned undef with $! set somewhere. Fortunately in case of
     # prove, non-readable .t will fail earlier in prove itself.
