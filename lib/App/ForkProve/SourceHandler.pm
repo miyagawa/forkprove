@@ -22,6 +22,9 @@ sub make_iterator {
     my $path = $src->meta->{file}{dir} . $src->meta->{file}{basename};
     my @inc = map { s/^-I//; $_ } grep { /^-I/ } @{ $src->switches };
 
+    $class->_autoflush(\*STDOUT);
+    $class->_autoflush(\*STDERR);
+
     pipe my $reader, my $writer;
     my $pid = fork;
     if ($pid) {
@@ -55,6 +58,13 @@ sub _run {
     "" =~ /^/;
 
     eval q{ package main; do $t or die $@ || $! } or die $@;
+}
+
+sub _autoflush {
+    my ( $class, $flushed ) = @_;
+    my $old_fh = select $flushed;
+    $| = 1;
+    select $old_fh;
 }
 
 1;
