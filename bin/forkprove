@@ -42,16 +42,16 @@ will not output clean TAP.
 
 =head2 Known patterns to fail
 
-Following kind of tests are known to fail.
+Following kind of tests B<might> fail when tested under
+forkprove. There are workarounds in forkprove to detect/fix some of
+them, so don't be surprised if your tests still pass :)
 
 =over 4
 
 =item *
 
-Tests that rely on the value of C<$FindBin::Bin>. There's a workaround
-in forkprove to correct the value, but if your test relies on the
-timing of initialization of FindBin, it might fail.
-    
+Tests that rely on the value of C<$FindBin::Bin>.
+
 =item *
 
 Tests that relies on C<BEGIN>, C<CHECK> and C<INIT> block to run
