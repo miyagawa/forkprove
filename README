@@ -28,14 +28,13 @@ CAVEATS
     not output clean TAP.
 
   Known patterns to fail
-    Following kind of tests are known to fail.
+    Following kind of tests might fail when tested under forkprove. There
+    are workarounds in forkprove to detect/fix some of them, so don't be
+    surprised if your tests still pass :)
 
-    *   Tests that rely on the value of $FindBin::Bin. There's a workaround
-        in forkprove to correct the value, but if your test relies on the
-        timing of initialization of FindBin, it might fail.
+    *   Tests that rely on the value of $FindBin::Bin.
 
-    *   Tests that relies on "BEGIN", "CHECK" and "INIT" block to run
-        correctly.
+    *   Tests that relies on "CHECK" and "INIT" block to run correctly.
 
 WHY
     Test::Aggregate allows you to create a nested TAP output by running a

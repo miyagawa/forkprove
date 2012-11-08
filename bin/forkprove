@@ -54,8 +54,7 @@ Tests that rely on the value of C<$FindBin::Bin>.
 
 =item *
 
-Tests that relies on C<BEGIN>, C<CHECK> and C<INIT> block to run
-correctly.
+Tests that relies on C<CHECK> and C<INIT> block to run correctly.
 
 =back
 
