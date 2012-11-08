@@ -57,7 +57,7 @@ sub _run {
     # note that this has to be dynamically scoped and can't go to other subs
     "" =~ /^/;
 
-    eval q{ package main; do $t or die $@ || $! } or die $@;
+    eval q{ package main; do $t; 1 } or die $!;
 }
 
 sub _autoflush {
