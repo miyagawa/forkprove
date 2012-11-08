@@ -18,6 +18,7 @@ sub can_handle {
 
     my $is_perl = TAP::Parser::SourceHandler::Perl->can_handle($src);
     return 1 if $is_perl > 0.5 && !$class->ignore($src->meta->{file});
+    return 0;
 }
 
 sub ignore {
