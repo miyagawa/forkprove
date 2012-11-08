@@ -57,7 +57,10 @@ sub _run {
     # note that this has to be dynamically scoped and can't go to other subs
     "" =~ /^/;
 
-    eval q{ package main; do $t; 1 } or die $!;
+    # do() can't tell if a test can't be read or a .t's last statement
+    # returned undef with $! set somewhere. Fortunately in case of
+    # prove, non-readable .t will fail earlier in prove itself.
+    eval q{ do $t; die $@ if $@; 1 } or die $@;
 }
 
 sub _autoflush {
