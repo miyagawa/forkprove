@@ -34,7 +34,8 @@ CAVEATS
         in forkprove to correct the value, but if your test relies on the
         timing of initialization of FindBin, it might fail.
 
-    *   Tests that expects "END" block to run after each ".t"
+    *   Tests that relies on "BEGIN", "CHECK" and "INIT" block to run
+        correctly.
 
 WHY
     Test::Aggregate allows you to create a nested TAP output by running a

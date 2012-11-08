@@ -51,10 +51,11 @@ Following kind of tests are known to fail.
 Tests that rely on the value of C<$FindBin::Bin>. There's a workaround
 in forkprove to correct the value, but if your test relies on the
 timing of initialization of FindBin, it might fail.
-
+    
 =item *
 
-Tests that expects C<END> block to run after each C<.t>
+Tests that relies on C<BEGIN>, C<CHECK> and C<INIT> block to run
+correctly.
 
 =back
 
