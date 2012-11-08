@@ -6,9 +6,18 @@ use App::ForkProve::PipeIterator;
 use TAP::Parser::IteratorFactory;
 TAP::Parser::IteratorFactory->register_handler(__PACKAGE__);
 
+use TAP::Parser::SourceHandler::Perl;
+
 sub can_handle {
     my($class, $src) = @_;
-    return 1 if $src->meta->{file}{ext} eq '.t' && !$class->ignore($src->meta->{file});
+
+    # I think there's a TAP::Parser bug thinking the first line of .t
+    # file as a shebang even if it doesn't begin with '#!'
+    local $src->meta->{file}{shebang} = undef
+      if $src->meta->{file}{shebang} !~ /^\#\!/;
+
+    my $is_perl = TAP::Parser::SourceHandler::Perl->can_handle($src);
+    return 1 if $is_perl > 0.5 && !$class->ignore($src->meta->{file});
 }
 
 sub ignore {
