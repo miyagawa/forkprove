@@ -70,8 +70,7 @@ sub _run {
     # Test::Builder is loaded? Reset the $Test object to make it unaware
     # that it's a forked off proecess so that subtests won't run
     if (defined $Test::Builder::Test) {
-        undef $Test::Builder::Test;
-        $Test::Builder::Test = Test::Builder->new;
+        $Test::Builder::Test->reset;
     }
 
     # do() can't tell if a test can't be read or a .t's last statement
