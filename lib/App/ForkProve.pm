@@ -9,6 +9,9 @@ use Getopt::Long ':config' => 'pass_through';
 
 use App::ForkProve::SourceHandler;
 
+our @Blacklists = qw( Test::SharedFork );
+our @Captured;
+
 sub run {
     my($class, @args) = @_;
 
@@ -40,7 +43,7 @@ sub run {
 
     for (@modules) {
         my($module, @import) = split /[=,]/;
-        local @INC = (@inc, @INC);
+        local @INC = ($class->blacklist_sub, @inc, @INC);
 
         eval "require $module" or die $@;
         $module->import(@import);
@@ -49,6 +52,39 @@ sub run {
     my $app = App::Prove->new;
     $app->process_args(@ARGV);
     $app->run;
+}
+
+sub file_to_pkg {
+    local $_ = shift;
+    s|/|::|g;
+    s|\.pm$||;
+    $_;
+}
+
+sub pkg_to_file {
+    local $_ = shift;
+    s|::|/|g;
+    "$_.pm";
+}
+
+sub blacklist_sub {
+    my $class = shift;
+
+    my %blacklisted = map { $_ => 1 } @Blacklists;
+
+    return sub {
+        my($coderef, $filename) = @_;
+
+        my $package = file_to_pkg($filename);
+        if ($blacklisted{$package}) {
+            my @content = ("package $package; push \@App::ForkProve::Captured, __PACKAGE__; 1;");
+            return sub {
+                return ($_ = shift @content) ? 1 : 0;
+            };
+        }
+
+        return;
+    };
 }
 
 1;

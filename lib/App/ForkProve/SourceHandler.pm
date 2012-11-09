@@ -73,6 +73,13 @@ sub _run {
         $Test::Builder::Test->reset;
     }
 
+    # Eliminated blacklisted modules from %INC so that child can reload on demand
+    for my $package (@App::ForkProve::Captured) {
+        no strict 'refs';
+        undef %{"$package\::"};
+        delete $INC{ App::ForkProve::pkg_to_file($package) };
+    }
+
     # do() can't tell if a test can't be read or a .t's last statement
     # returned undef with $! set somewhere. Fortunately in case of
     # prove, non-readable .t will fail earlier in prove itself.
