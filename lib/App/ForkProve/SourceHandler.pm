@@ -73,6 +73,9 @@ sub _run {
         $Test::Builder::Test->reset;
     }
 
+    # avoid child processes sharing the same seed value as the parent
+    srand();
+
     # do() can't tell if a test can't be read or a .t's last statement
     # returned undef with $! set somewhere. Fortunately in case of
     # prove, non-readable .t will fail earlier in prove itself.
