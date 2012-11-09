@@ -14,7 +14,7 @@ sub can_handle {
     # I think there's a TAP::Parser bug thinking the first line of .t
     # file as a shebang even if it doesn't begin with '#!'
     local $src->meta->{file}{shebang} = undef
-      if $src->meta->{file}{shebang} !~ /^\#\!/;
+      if $src->meta->{file}{shebang} !~ /^#!/;
 
     my $is_perl = TAP::Parser::SourceHandler::Perl->can_handle($src);
     return 1 if $is_perl > 0.5 && !$class->ignore($src->meta->{file});
