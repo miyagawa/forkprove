@@ -20,6 +20,7 @@ MANIFEST			This list of files
 META.yml
 README
 t/00_compile.t
+t/argv.t
 t/dollar_bang.t
 t/main.t
 t/no_plan.t
