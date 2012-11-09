@@ -1,8 +1,7 @@
 #!perl
 use strict;
 use App::ForkProve;
-BEGIN { App::ForkProve->process_preloads(@ARGV) };
-App::ForkProve->run();
+App::ForkProve->run(@ARGV);
 
 __END__
 
