@@ -64,6 +64,24 @@ environment by making a copy of the process with fork for each test,
 which means it could run your tests that rely on the singleton state
 etc. without modifying the code to run with Test::Aggregate.
 
+=head1 TIPS
+
+=over 4
+
+=item *
+
+If you have a bunch of modules you want to load, put them in a file
+C<t/Bootstrap.pm> and load it:
+
+  forkprove -Mt::Bootstrap
+
+If you're lazy and just load all of C<.pm> files in lib and t: use
+L<lib::require::all>
+
+  forkprove -Mlib::require::all=lib,t
+
+=back
+
 =head1 PERFORMANCE
 
 Your mileage might vary, if forkprove runs your tests faster or
