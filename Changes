@@ -1,5 +1,9 @@
 Revision history for Perl extension App::ForkProve
 
+0.3.0 Thu Nov  8 16:13:17 PST 2012
+      - Now you can preload Test::Builder and friends because forkprove resets the state
+      - Blacklisted Test::SharedFork for now since we can't reset its state
+
 0.2.3 Thu Nov  8 12:00:23 PST 2012
       - Added a warning when preloading modules ended up requiring Test::Builder
       - Fixed the test handler routine to use the same as prove so that .pl test can run

@@ -23,11 +23,6 @@ CONFIGURATION
     directory and run with the standard perl execution via prove.
 
 CAVEATS
-  Test::More
-    Do not try to preload Test::Builder and friends because doing so will
-    not output clean TAP.
-
-  Known patterns to fail
     Following kind of tests might fail when tested under forkprove. There
     are workarounds in forkprove to detect/fix some of them, so don't be
     surprised if your tests still pass :)
@@ -35,6 +30,10 @@ CAVEATS
     *   Tests that rely on the value of $FindBin::Bin.
 
     *   Tests that relies on "CHECK" and "INIT" block to run correctly.
+
+    See also
+    <http://search.cpan.org/~flora/Test-Aggregate-0.364/lib/Test/Aggregate.p
+    m#CAVEATS>, many of which could apply to forkprove as well.
 
 WHY
     Test::Aggregate allows you to create a nested TAP output by running a
