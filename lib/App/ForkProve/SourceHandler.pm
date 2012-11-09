@@ -14,7 +14,7 @@ sub can_handle {
     # I think there's a TAP::Parser bug thinking the first line of .t
     # file as a shebang even if it doesn't begin with '#!'
     local $src->meta->{file}{shebang} = undef
-      if $src->meta->{file}{shebang} !~ /^\#\!/;
+      if $src->meta->{file}{shebang} !~ /^#!/;
 
     my $is_perl = TAP::Parser::SourceHandler::Perl->can_handle($src);
     return 1 if $is_perl > 0.5 && !$class->ignore($src->meta->{file});
@@ -72,6 +72,9 @@ sub _run {
     if (defined $Test::Builder::Test) {
         $Test::Builder::Test->reset;
     }
+
+    # avoid child processes sharing the same seed value as the parent
+    srand();
 
     # do() can't tell if a test can't be read or a .t's last statement
     # returned undef with $! set somewhere. Fortunately in case of

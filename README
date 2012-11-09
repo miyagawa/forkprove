@@ -44,6 +44,17 @@ WHY
     which means it could run your tests that rely on the singleton state
     etc. without modifying the code to run with Test::Aggregate.
 
+TIPS
+    *   If you have a bunch of modules you want to load, put them in a file
+        "t/Bootstrap.pm" and load it:
+
+          forkprove -Mt::Bootstrap
+
+        If you're lazy and just load all of ".pm" files in lib and t: use
+        lib::require::all
+
+          forkprove -Mlib::require::all=lib,t
+
 PERFORMANCE
     Your mileage might vary, if forkprove runs your tests faster or not. For
     lightweight modules, we've found that using forkprove doesn't make any
