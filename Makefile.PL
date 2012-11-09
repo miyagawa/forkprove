@@ -2,6 +2,7 @@ use inc::Module::Install;
 
 name 'forkprove';
 all_from 'lib/App/ForkProve.pm';
+abstract_from 'bin/forkprove';
 readme_from('bin/forkprove');
 
 requires 'App::Prove', 3.25;
