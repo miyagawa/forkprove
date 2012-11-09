@@ -23,6 +23,8 @@ t/00_compile.t
 t/dollar_bang.t
 t/main.t
 t/no_plan.t
+t/Rand.pm
+t/rand1.t
+t/rand2.t
 t/undef.t
-TODO
 xt/pod.t

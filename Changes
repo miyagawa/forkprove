@@ -1,5 +1,10 @@
 Revision history for Perl extension App::ForkProve
 
+v0.4.0 Fri Nov  9 08:53:58 PST 2012
+       - Simplified the blacklist logic (mst)
+       - Added the srand() initialization (markstos)
+       - Fixed the version number scheme (xdg)
+
 0.3.0 Thu Nov  8 16:13:17 PST 2012
       - Now you can preload Test::Builder and friends because forkprove resets the state
       - Blacklisted Test::SharedFork for now since we can't reset its state
