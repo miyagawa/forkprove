@@ -11,7 +11,7 @@ use App::ForkProve::SourceHandler;
 
 our @Blacklists = qw( Test::SharedFork );
 
-sub run {
+sub process_preloads {
     my($class, @args) = @_;
 
     # Probably have to copy to @ARGV so that App::Prove can mangle it
@@ -49,7 +49,9 @@ sub run {
         eval "require $module" or die $@;
         $module->import(@import);
     }
+}
 
+sub run {
     my $app = App::Prove->new;
     $app->process_args(@ARGV);
     $app->run;
