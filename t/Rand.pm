@@ -1,5 +1,5 @@
 package t::Rand;
 
-srand();
+rand(1);
 
 1;
