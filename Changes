@@ -1,5 +1,8 @@
 Revision history for Perl extension App::ForkProve
 
+v0.4.1 Fri Nov  9 14:10:47 PST 2012
+       - Clear @ARGV for each test (#8)
+
 v0.4.0 Fri Nov  9 08:53:58 PST 2012
        - Simplified the blacklist logic (mst)
        - Added the srand() initialization (markstos)
