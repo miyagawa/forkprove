@@ -43,6 +43,7 @@ sub make_iterator {
     } else {
         close $reader;
         open STDOUT, ">&", $writer;
+        open STDERR, ">&", $writer if $src->merge;
         _run($path, \@inc);
         exit;
     }
