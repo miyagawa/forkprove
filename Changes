@@ -1,5 +1,9 @@
 Revision history for Perl extension App::ForkProve
 
+v0.4.2 Mon Nov 12 20:18:49 PST 2012
+       - Support --merge (#9)
+       - Fix Getopt::Long options to make options case sensitive
+
 v0.4.1 Fri Nov  9 14:10:47 PST 2012
        - Clear @ARGV for each test (#8)
 
