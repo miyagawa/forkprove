@@ -1,5 +1,8 @@
 Revision history for Perl extension App::ForkProve
 
+v0.4.3 Wed Nov 21 08:11:51 PST 2012
+       - Fix exit status code
+
 v0.4.2 Mon Nov 12 20:18:49 PST 2012
        - Support --merge (#9)
        - Fix Getopt::Long options to make options case sensitive

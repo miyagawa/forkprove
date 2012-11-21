@@ -29,4 +29,5 @@ t/Rand.pm
 t/rand1.t
 t/rand2.t
 t/undef.t
+t/zero.t
 xt/pod.t
