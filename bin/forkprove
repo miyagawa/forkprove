@@ -1,7 +1,7 @@
 #!perl
 use strict;
 use App::ForkProve;
-App::ForkProve->run(@ARGV);
+exit(App::ForkProve->run(@ARGV) ? 0 : 1);
 
 __END__
 
