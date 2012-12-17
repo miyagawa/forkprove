@@ -73,6 +73,9 @@ sub _run {
         }
     }
 
+    # restore defaults
+    Getopt::Long::ConfigDefaults();
+
     # reset the state of empty pattern matches, so that they have the same
     # behavior as running in a clean process.
     # see "The empty pattern //" in perlop.
