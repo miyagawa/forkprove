@@ -62,6 +62,17 @@ sub _run {
         FindBin::init()
     }
 
+    # open DATA from test script
+    {
+        close main::DATA;
+        if(open(my $fh, $t)){
+            my $code = do { local $/; <$fh> };
+            if(my($data) = $code =~ /^__(?:END|DATA)__$(.*)/ms){
+                open(main::DATA, '<', \$data) or die "Can't open string as DATA. $!";
+            }
+        }
+    }
+
     # reset the state of empty pattern matches, so that they have the same
     # behavior as running in a clean process.
     # see "The empty pattern //" in perlop.
