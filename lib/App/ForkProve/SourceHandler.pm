@@ -65,10 +65,11 @@ sub _run {
     # open DATA from test script
     {
         close main::DATA;
-        if(open(my $fh, $t)){
+        if (open my $fh, $t) {
             my $code = do { local $/; <$fh> };
             if(my($data) = $code =~ /^__(?:END|DATA)__$(.*)/ms){
-                open(main::DATA, '<', \$data) or die "Can't open string as DATA. $!";
+                open main::DATA, '<', \$data
+                  or die "Can't open string as DATA. $!";
             }
         }
     }

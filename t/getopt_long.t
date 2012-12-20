@@ -1,7 +1,34 @@
+package App::Foo;
+
+use Getopt::Long;
+
+sub run {
+    Getopt::Long::GetOptions('foo' => \my $foo);
+    $foo;
+}
+
+1;
+
+package main;
+
 use Test::More;
 
-use App::ForkProve;
+subtest 'unknown-option' => sub {
+    my $stderr;
+    {
+        local *STDERR;
+        open STDERR, '>', \$stderr;
+        local @ARGV = qw/--unknown-option/;
+        App::Foo::run();
+    }
+    like($stderr, qr/Unknown option:/);
+};
 
-ok(App::ForkProve->run('t/run_under_forkprove/getopt_long.t'));
+subtest 'ignore case' => sub {
+    local @ARGV = qw/--FOO/;
+    my $foo = App::Foo::run();
+    is($foo, 1);
+};
 
 done_testing;
+
