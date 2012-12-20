@@ -5,7 +5,7 @@ use 5.008_001;
 use version; our $VERSION = "v0.4.4";
 
 use App::Prove;
-use Getopt::Long ':config' => qw(pass_through no_ignore_case);
+use Getopt::Long ':config' => qw(bundling pass_through no_ignore_case);
 
 use App::ForkProve::SourceHandler;
 
