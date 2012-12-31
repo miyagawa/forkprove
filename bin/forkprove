@@ -71,9 +71,9 @@ etc. without modifying the code to run with Test::Aggregate.
 =item *
 
 If you have a bunch of modules you want to load, put them in a file
-C<t/Bootstrap.pm> and load it:
+C<t/Preload.pm> and load it:
 
-  forkprove -Mt::Bootstrap
+  forkprove -Mt::Preload
 
 If you're lazy and just load all of C<.pm> files in lib and t: use
 L<lib::require::all>
