@@ -30,8 +30,8 @@ contain a regular expression to ignore files to test with forkprove.
 
   PERL_FORKPROVE_IGNORE=no-preload forkprove -lr t
 
-This will run the tests with C</no-preload/> in its filenames and
-directory and run with the standard perl execution via prove.
+This will run the tests whose filenames and directory match
+C<no-preload> with the standard perl execution via prove.
 
 =head1 CAVEATS
 
