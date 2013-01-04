@@ -9,7 +9,7 @@ use Getopt::Long ':config' => qw(bundling pass_through no_ignore_case);
 
 use App::ForkProve::SourceHandler;
 
-our @Blacklists = qw( Test::SharedFork );
+our @Blacklists = qw( Test::SharedFork Test::LeakTrace );
 
 sub run {
     my($class, @args) = @_;
