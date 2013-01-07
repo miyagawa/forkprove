@@ -19,8 +19,8 @@ CONFIGURATION
 
       PERL_FORKPROVE_IGNORE=no-preload forkprove -lr t
 
-    This will run the tests with "/no-preload/" in its filenames and
-    directory and run with the standard perl execution via prove.
+    This will run the tests whose filenames and directory match "no-preload"
+    with the standard perl execution via prove.
 
 CAVEATS
     Following kind of tests might fail when tested under forkprove. There
@@ -46,9 +46,9 @@ WHY
 
 TIPS
     *   If you have a bunch of modules you want to load, put them in a file
-        "t/Bootstrap.pm" and load it:
+        "t/Preload.pm" and load it:
 
-          forkprove -Mt::Bootstrap
+          forkprove -Mt::Preload
 
         If you're lazy and just load all of ".pm" files in lib and t: use
         lib::require::all

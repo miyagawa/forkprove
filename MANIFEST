@@ -21,6 +21,7 @@ META.yml
 README
 t/00_compile.t
 t/argv.t
+t/data.t
 t/dollar_bang.t
 t/getopt_long.t
 t/main.t
