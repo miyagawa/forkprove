@@ -1,5 +1,8 @@
 Revision history for Perl extension App::ForkProve
 
+{{$NEXT}}
+       - Repacked with Milla and it fixes bad NAME
+
 v0.4.5 Mon Jan  7 15:21:29 PST 2013
        - Enabled option bundling so that forprove -lr etc should work (doy)
        - Blacklisted Test::LeakTrace because it doesn't work under forkprove (doy)
