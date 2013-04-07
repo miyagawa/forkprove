@@ -1,6 +1,7 @@
 MYMETA.*
 META.yml
+!META.json
 Makefile
-inc/
 pm_to_blib
-*~
+/forkprove-*
+/.build
