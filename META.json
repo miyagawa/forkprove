@@ -24,9 +24,14 @@
       ]
    },
    "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Module::Build" : "0.3601"
+         }
+      },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30"
+            "Module::Build" : "0.3601"
          }
       },
       "develop" : {
@@ -62,7 +67,7 @@
          "web" : "https://github.com/miyagawa/forkprove"
       }
    },
-   "version" : "v0.4.6",
+   "version" : "v0.4.7",
    "x_contributors" : [
       "Jesse Luehrs <doy@tozt.net>",
       "Jonathan Swartz <swartz@pobox.com>",

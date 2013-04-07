@@ -17,7 +17,7 @@ my %module_build_args = (
     "Tatsuhiko Miyagawa <miyagawa\@bulknews.net>"
   ],
   "dist_name" => "forkprove",
-  "dist_version" => "v0.4.6",
+  "dist_version" => "v0.4.7",
   "license" => "perl",
   "module_name" => "forkprove",
   "recommends" => {},
