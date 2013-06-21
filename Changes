@@ -2,6 +2,9 @@ Revision history for Perl extension App::ForkProve
 
 {{$NEXT}}
 
+v0.4.8  2013-06-20 22:29:08 PDT
+        - Fix Test::More dependencies for subtest (doy)
+
 v0.4.7  2013-04-07 01:59:21 PDT
         - Switched to Module::Build for now because of https://github.com/rjbs/dist-zilla/pull/164
 
