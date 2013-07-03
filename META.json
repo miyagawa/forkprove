@@ -62,7 +62,7 @@
          "web" : "https://github.com/miyagawa/forkprove"
       }
    },
-   "version" : "v0.4.8",
+   "version" : "v0.4.9",
    "x_contributors" : [
       "Jesse Luehrs <doy@tozt.net>",
       "Jonathan Swartz <swartz@pobox.com>",
