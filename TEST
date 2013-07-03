@@ -4,4 +4,4 @@ perl -Ilib script/forkprove -j2 -l
 perl -Ilib script/forkprove -MTest::More -l
 perl -Ilib script/forkprove -MTest::SharedFork -j4 -l
 perl -Ilib script/forkprove -Mt::Rand -l
-
+perl -Ilib script/forkprove -Mt::UsesData -l

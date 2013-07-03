@@ -3,6 +3,7 @@ use strict;
 use parent qw(TAP::Parser::SourceHandler);
 
 use App::ForkProve::PipeIterator;
+use Scalar::Util 'openhandle';
 use TAP::Parser::IteratorFactory;
 TAP::Parser::IteratorFactory->register_handler(__PACKAGE__);
 
@@ -70,6 +71,32 @@ sub _run {
             if(my($data) = $code =~ /^__(?:END|DATA)__$(.*)/ms){
                 open ::DATA, '<', \$data
                   or die "Can't open string as DATA. $!";
+            }
+        }
+    }
+
+    # restore DATA for all preloaded modules
+    my $data = \%App::ForkProve::Data;
+    for my $mod (keys %$data) {
+        my ($was_open, $prev_file, $prev_pos) = @{ $data->{$mod} };
+
+        my $fh = do {
+            no strict 'refs';
+            *{ $mod . '::DATA' }
+        };
+
+        # note that we need to ensure that each forked copy is using a
+        # different file handle, or else concurrent processes will interfere
+        # with each other
+
+        close $fh if openhandle($fh);
+
+        if ($was_open) {
+            if (open $fh, '<', $prev_file) {
+                seek($fh, $prev_pos, 0);
+            }
+            else {
+                warn "Couldn't reopen DATA for $mod: $!";
             }
         }
     }

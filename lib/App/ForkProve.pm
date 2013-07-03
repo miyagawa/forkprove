@@ -6,10 +6,12 @@ use version; our $VERSION = "v0.4.8";
 
 use App::Prove;
 use Getopt::Long ':config' => qw(bundling pass_through no_ignore_case);
+use Scalar::Util 'openhandle';
 
 use App::ForkProve::SourceHandler;
 
 our @Blacklists = qw( Test::SharedFork );
+our %Data;
 
 sub run {
     my($class, @args) = @_;
@@ -48,6 +50,23 @@ sub run {
 
         eval "require $module" or die $@;
         $module->import(@import);
+    }
+
+    for my $loaded (keys %INC) {
+        next unless $loaded =~ /\.pm$/;
+
+        my $mod = $loaded;
+        $mod =~ s{/}{::}g;
+        $mod =~ s{\.pm$}{};
+
+        my $fh = do {
+            no strict 'refs';
+            *{ $mod . '::DATA' }
+        };
+
+        $Data{$mod} = [!!openhandle($fh), $INC{$loaded}];
+        push @{ $Data{$mod} }, tell($fh)
+            if $Data{$mod}[0];
     }
 
     my $app = App::Prove->new;
