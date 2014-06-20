@@ -11,8 +11,20 @@ sub new {
 
 sub get_select_handles { $_[0]->{fh} }
 
+sub wait { $_[0]->_wait }
+sub exit { $_[0]->_wait >> 8 }
+
+sub _wait {
+    my $self = shift;
+    if (!defined $self->{wait}) {
+        waitpid $self->{pid}, 0;
+        $self->{wait} = $?;
+    }
+    return $self->{wait};
+}
+
 sub DESTROY {
-    waitpid $_[0]->{pid}, 0;
+    $_[0]->_wait;
 }
 
 1;
