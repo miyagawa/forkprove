@@ -6,6 +6,7 @@ sub new {
     my($class, $fh, $pid) = @_;
     my $self = $class->SUPER::new($fh);
     $self->{pid} = $pid;
+    $self->{mypid} = $$;
     $self;
 }
 
@@ -24,6 +25,7 @@ sub _wait {
 }
 
 sub DESTROY {
+    return unless $_[0]->{mypid} == $$;
     $_[0]->_wait;
 }
 
