@@ -1,6 +1,8 @@
 Revision history for Perl extension App::ForkProve
 
 {{$NEXT}}
+
+v0.4.10  2014-06-20 11:20:07 PDT
         - Non-zero exit codes should also cause failure, even if not indicated
           by the TAP (reported by shumphrey)
 

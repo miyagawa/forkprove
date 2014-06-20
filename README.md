@@ -9,7 +9,7 @@ App::ForkProve - forking prove
 
 # DESCRIPTION
 
-App::ForkProve is a backend for [forkprove](http://search.cpan.org/perldoc?forkprove).
+App::ForkProve is a backend for [forkprove](https://metacpan.org/pod/forkprove).
 
 # AUTHOR
 
@@ -26,4 +26,4 @@ it under the same terms as Perl itself.
 
 # SEE ALSO
 
-[forkprove](http://search.cpan.org/perldoc?forkprove)
+[forkprove](https://metacpan.org/pod/forkprove)

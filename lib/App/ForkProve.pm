@@ -2,7 +2,7 @@ package App::ForkProve;
 
 use strict;
 use 5.008_001;
-use version; our $VERSION = "v0.4.9";
+use version; our $VERSION = "v0.4.10";
 
 use App::Prove;
 use Getopt::Long ':config' => qw(bundling pass_through no_ignore_case);
