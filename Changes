@@ -1,6 +1,8 @@
 Revision history for Perl extension App::ForkProve
 
 {{$NEXT}}
+        - Non-zero exit codes should also cause failure, even if not indicated
+          by the TAP (reported by shumphrey)
 
 v0.4.9  2013-07-03 16:04:18 PDT
         - ensure DATA is reset for preloaded .pm modules (doy)
