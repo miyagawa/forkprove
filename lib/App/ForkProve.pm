@@ -42,14 +42,16 @@ sub run {
         unshift @inc, 'blib/lib', 'blib/arch';
     }
 
+    {
+        local $ENV{TB_NO_EARLY_INIT} = 1;
+        for (@modules) {
+            my($module, @import) = split /[=,]/;
+            local @INC{map pkg_to_file($_), @Blacklists} = (__FILE__) x scalar(@Blacklists);
+            local @INC = (@inc, @INC);
 
-    for (@modules) {
-        my($module, @import) = split /[=,]/;
-        local @INC{map pkg_to_file($_), @Blacklists} = (__FILE__) x scalar(@Blacklists);
-        local @INC = (@inc, @INC);
-
-        eval "require $module" or die $@;
-        $module->import(@import);
+            eval "require $module" or die $@;
+            $module->import(@import);
+        }
     }
 
     for my $loaded (keys %INC) {
