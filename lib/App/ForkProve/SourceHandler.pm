@@ -112,8 +112,13 @@ sub _run {
 
     # Test::Builder is loaded? Reset the $Test object to make it unaware
     # that it's a forked off proecess so that subtests won't run
-    if (defined $Test::Builder::Test) {
-        $Test::Builder::Test->reset;
+    if ($INC{'Test/Builder.pm'}) {
+        if (defined $Test::Builder::Test) {
+            $Test::Builder::Test->reset;
+        }
+        else {
+            Test::Builder->new;
+        }
     }
 
     # avoid child processes sharing the same seed value as the parent
