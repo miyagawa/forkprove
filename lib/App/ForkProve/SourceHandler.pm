@@ -104,11 +104,8 @@ sub _run {
     # restore defaults
     Getopt::Long::ConfigDefaults();
 
-    # reset the state of empty pattern matches, so that they have the same
-    # behavior as running in a clean process.
-    # see "The empty pattern //" in perlop.
-    # note that this has to be dynamically scoped and can't go to other subs
-    "" =~ /^/;
+    # Perls >= 5.26 don't have '.' in @INC and do $t may fail
+    $t = "./$t" unless $t =~ m(^[/.]);
 
     # Test::Builder is loaded? Reset the $Test object to make it unaware
     # that it's a forked off proecess so that subtests won't run
@@ -126,6 +123,12 @@ sub _run {
 
     # clear @ARGV it's localized in App::ForkProve
     local @ARGV = ();
+
+    # reset the state of empty pattern matches, so that they have the same
+    # behavior as running in a clean process.
+    # see "The empty pattern //" in perlop.
+    # note that this has to be dynamically scoped and can't go to other subs
+    "" =~ /^/;
 
     # do() can't tell if a test can't be read or a .t's last statement
     # returned undef with $! set somewhere. Fortunately in case of
