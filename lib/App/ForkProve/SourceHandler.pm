@@ -130,7 +130,7 @@ sub _run {
     # do() can't tell if a test can't be read or a .t's last statement
     # returned undef with $! set somewhere. Fortunately in case of
     # prove, non-readable .t will fail earlier in prove itself.
-    eval q{ package main; do $t; die $@ if $@; 1 } or die $@;
+    eval q{ package main; do "./$t"; die $@ if $@; 1 } or die $@;
 }
 
 sub _autoflush {
